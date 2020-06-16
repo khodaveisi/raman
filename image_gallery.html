@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Image Preview using jQuery</title>
+    <meta name="description" content="Image Preview using jQuery">
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen">
+    <style type="text/css">
+        body
+        {
+            margin: 0;
+            padding: 40px;
+            background: #B1B1B1;
+            font-family: Tahoma, Geneva, sans-serif;
+            font-weight: normal;
+            color: #555;
+            line-height: 180%;
+        }
+        
+        .main
+        {
+            background-color: #DDFBEF;
+            width: 460px;
+            margin-left: 100px;
+            margin: 0 auto;
+            padding: 10px;
+            min-height: 500px;
+        }
+        
+        .gallery
+        {
+            background-color: #EBEBEB;
+            min-height: 150px;
+            padding: 5px 0px 10px 10px;
+            box-shadow: 2px 2px 3px rgba(150, 150, 150, .75);
+            margin-bottom: 25px;
+            width: 445px;
+        }
+        
+        h1
+        {
+            font-size: 28px;
+            font-weight: normal;
+            color: #22411D;
+            text-shadow: 1px 2px 1px rgba(150, 150, 150, .75);
+        }
+        
+        h2
+        {
+            font-size: 22px;
+            font-weight: normal;
+            color: #526F78;
+            text-shadow: 1px 2px 1px rgba(150, 150, 150, .75);
+        }
+        
+        a
+        {
+            text-decoration: none;
+            color: #f30;
+        }
+        
+        
+        pre
+        {
+            display: block;
+            font-family: Tahoma, Geneva, sans-serif;
+            font-weight: normal;
+            padding: 7px;
+            border: 3px solid #bae2f0;
+            background: #e3f4f9;
+            margin: .5em 0;
+            overflow: auto;
+            width: 800px;
+        }
+        
+        img
+        {
+            border: 0px;
+            box-shadow: 2px 2px 3px #555562;
+        }
+        
+        ul, li
+        {
+            margin: 0;
+            padding: 0;
+        }
+        
+        li
+        {
+            list-style: none;
+            float: left;
+            display: inline;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <section class="main">
+      <h1>Image Preview using jQuery</h1>
+       <article class="gallery">
+       <h2>Landscape Gallery</h2>
+         <ul>
+           <li><a href="img/1.jpg" class="preview" title="Banff Alberta Canada"><img src="img/1t.jpg" alt="gallery thumbnail" /></a></li>
+           <li><a href="img/2.jpg" class="preview" title="Plains - Africa"><img src="img/2t.jpg" alt="gallery thumbnail" /></a></li>
+           <li><a href="img/3.jpg" class="preview" title="Farmland"><img src="img/3t.jpg" alt="gallery thumbnail" /></a></li>
+           <li><a href="img/4.jpg" class="preview" title="Prairie"><img src="img/4t.jpg" alt="gallery thumbnail" /></a></li>
+         </ul>
+       </article>
+       <article class="gallery">
+       <h2>Still Life Gallery</h2>
+         <ul>
+           <li><a href="img/5.jpg" class="preview" title="Fruit Flowers Bread"><img src="img/5t.jpg" alt="gallery thumbnail" /></a></li>
+           <li><a href="img/6.jpg" class="preview" title="Baking"><img src="img/6t.jpg" alt="gallery thumbnail" /></a></li>
+           <li><a href="img/7.jpg" class="preview" title="Fruit on Table"><img src="img/7t.jpg" alt="gallery thumbnail" /></a></li>
+           <li><a href="img/8.jpg" class="preview" title="Vegetables"><img src="img/8t.jpg" alt="gallery thumbnail" /></a></li>
+         </ul>
+       </article>  
+    </section>
+    <script type="text/javascript" language="javascript">
+
+        // Kick off the jQuery with the document ready function on page load
+        $(document).ready(function () {
+            imagePreview();
+        });
+
+        // Configuration of the x and y offsets
+        this.imagePreview = function () {
+            xOffset = -20;
+            yOffset = 40;
+
+            $("a.preview").hover(function (e) {
+                this.t = this.title;
+                this.title = "";
+                var c = (this.t != "") ? "<br/>" + this.t : "";
+                $("body").append("<p id='preview'><img src='" + this.href + "' alt='Image preview' />" + c + "</p>");
+                $("#preview")
+            .css("top", (e.pageY - xOffset) + "px")
+            .css("left", (e.pageX + yOffset) + "px")
+            .fadeIn("slow");
+            },
+
+    function () {
+        this.title = this.t;
+        $("#preview").remove();
+
+    });
+
+            $("a.preview").mousemove(function (e) {
+                $("#preview")
+            .css("top", (e.pageY - xOffset) + "px")
+            .css("left", (e.pageX + yOffset) + "px");
+            });
+        };
+
+    </script>
+</body>
+</html>
